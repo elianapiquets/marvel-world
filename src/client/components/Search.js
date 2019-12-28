@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { FaSearch } from 'react-icons/fa';
-import { IconContext } from 'react-icons';
+import SearchIcon from '../assets/img/magnifying-glass.svg';
 
 const SearchBar = styled.div`
   display: flex;
   align-items: center;
   width: calc(100% - 120px);
-  padding: 0 20px 0 10px;
+  padding: 0 20px 0 15px;
   color: ${props => props.theme.color.gray_20};
 
   @media (max-width: ${props => props.theme.breakpointSizes.xs.max}px) {
@@ -79,13 +78,19 @@ const Input = styled.input`
   }
 `;
 
+const Icon = styled.i`
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  margin: 5px;
+`;
 export default class Search extends Component {
   render() {
     return (
       <SearchBar>
-        <IconContext.Provider value={{ color: '#ccc' }}>
-          <FaSearch />
-        </IconContext.Provider>
+        <Icon>
+          <img src={SearchIcon} alt="Buscar" />
+        </Icon>
         <FocusContainer>
           <Input placeholder="Buscar" type="text" />
           <FocusInput />

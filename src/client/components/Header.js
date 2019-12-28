@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { FaSearch } from 'react-icons/fa';
 import { IconContext } from 'react-icons';
-import MarvelLogo from '../assets/marvel.png';
+import MarvelLogo from '../assets/img/marvel.png';
 import Search from './Search';
 
 const HeaderBar = styled.header`
