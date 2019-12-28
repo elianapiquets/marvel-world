@@ -12,8 +12,8 @@ export default class App extends Component {
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         <main>
-          <Header />
           <CharactersContextProvider>
+            <Header />
             <Characters />
           </CharactersContextProvider>
         </main>

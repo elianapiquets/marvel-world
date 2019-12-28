@@ -18,11 +18,11 @@ const Characters = props => {
   return (
     <CharactersContext.Consumer>
       {context => {
-        const { results } = context;
+        const { characters } = context;
         return (
           <CharactersContent>
-            {results &&
-              results.map(character => (
+            {characters &&
+              characters.map(character => (
                 <Card character={character} key={character.id} />
               ))}
           </CharactersContent>

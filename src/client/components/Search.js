@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import SearchIcon from '../assets/img/magnifying-glass.svg';
+import { CharactersContext } from '../context/CharactersContext';
 
 const SearchBar = styled.div`
   display: flex;
@@ -38,6 +39,9 @@ const FocusInput = styled.span`
   transition: width 0.4s;
 `;
 
+const Form = styled.form`
+  width: 100%;
+`;
 const Input = styled.input`
   color: ${props => props.theme.color.gray_50};
   font-size: 14px;
@@ -85,16 +89,20 @@ const Icon = styled.i`
   margin: 5px;
 `;
 export default class Search extends Component {
+  static contextType = CharactersContext;
   render() {
+    const { searchByName } = this.context;
     return (
       <SearchBar>
         <Icon>
           <img src={SearchIcon} alt="Buscar" />
         </Icon>
-        <FocusContainer>
-          <Input placeholder="Buscar" type="text" />
-          <FocusInput />
-        </FocusContainer>
+        <Form action="">
+          <FocusContainer>
+            <Input placeholder="Buscar" type="text" onChange={searchByName} />
+            <FocusInput />
+          </FocusContainer>
+        </Form>
       </SearchBar>
     );
   }
