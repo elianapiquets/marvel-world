@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import PortalModal from './PortalModal';
+import Detail from './Detail';
 
 const CardContent = styled.a`
   width: calc(25% - 30px);
@@ -75,18 +77,34 @@ const Name = styled.h3`
   margin: 10px 0 0 0;
 `;
 
-function Card(props) {
-  const { character } = props;
-  return (
-    <CardContent>
-      <Image
-        imageUrl={`${character.thumbnail.path}.${character.thumbnail.extension}`}
-      />
-      <Information>
-        <Tools>Tools</Tools>
-        <Name>{character.name}</Name>
-      </Information>
-    </CardContent>
-  );
+class Card extends React.Component {
+  state = {
+    showDetail: false
+  };
+
+  toggleDetail = () => {
+    this.setState({
+      showDetail: !this.state.showDetail
+    });
+  };
+  render() {
+    const { character } = this.props;
+    return (
+      <React.Fragment>
+        <CardContent onClick={this.toggleDetail}>
+          <Image
+            imageUrl={`${character.thumbnail.path}.${character.thumbnail.extension}`}
+          />
+          <Information>
+            <Tools>Tools</Tools>
+            <Name>{character.name}</Name>
+          </Information>
+        </CardContent>
+        <PortalModal open={this.state.showDetail} onClose={this.toggleDetail}>
+          <Detail character={character} />
+        </PortalModal>
+      </React.Fragment>
+    );
+  }
 }
 export default Card;
